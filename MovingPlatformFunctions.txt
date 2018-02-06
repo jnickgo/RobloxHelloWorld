@@ -1,0 +1,33 @@
+_G.GlobalFunction = function()
+	print("Hello World")
+end
+
+function _G.moveToLocationWithSpeed(partToMove, destination, speed)
+	local bodyVelocity = partToMove.BodyVelocity
+	local platformVelocity = (destination - partToMove.Position)/speed
+	bodyVelocity.Velocity = platformVelocity
+	wait(speed)
+end
+
+function _G.moveToLocation(partToMove, destination)
+	local bodyVelocity = partToMove.BodyVelocity
+	local platformVelocity = (destination - partToMove.Position)/10
+	bodyVelocity.Velocity = platformVelocity
+	wait(10)
+end
+
+function _G.stopPlatform(partToMove)
+	local bodyVelocity = partToMove.BodyVelocity
+	bodyVelocity.Velocity = Vector3.new(0,0,0)
+end
+
+function _G.moveBetweenPoints(partToMove,point1,point2,speed,waitTime)
+	while true do 
+		wait(waitTime)
+		_G.moveToLocationWithSpeed(partToMove,point1,speed)
+		_G.stopPlatform(partToMove)
+		wait(waitTime)
+		_G.moveToLocationWithSpeed(partToMove,point2,speed)
+		_G.stopPlatform(partToMove)
+	end
+end

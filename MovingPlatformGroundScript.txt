@@ -1,0 +1,14 @@
+local model = script.Parent
+local platform = model.MovingPart
+local start = model.Start
+local finish = model.Finish
+
+local bodyPosition = platform.BodyPosition
+
+while true do
+	bodyPosition.position = finish.Position
+	wait(6)
+	bodyPosition.position = start.Position
+	wait(6)	
+end
+
